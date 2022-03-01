@@ -78,19 +78,6 @@
             android:layout_weight="1"
             android:text=""
             android:textSize="40sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
-        app:layout_constraintVertical_bias="0.0">
 
         <Button
             android:id="@+id/button3"
@@ -115,7 +102,7 @@
         android:id="@+id/group_answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="linearLayout1,LinearLayout2"
+        app:constraint_referenced_ids="linearLayout1"
         android:visibility="visible"/>
 
 
