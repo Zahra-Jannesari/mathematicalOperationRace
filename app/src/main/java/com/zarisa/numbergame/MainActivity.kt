@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         level++
+        listButtons.forEach { it.isClickable=true}
         clearColor()
         listButtons.forEach { it.text = "" }
         var randomA = Random().nextInt(99) + 1
