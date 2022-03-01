@@ -28,10 +28,11 @@ class ScoreActivity : AppCompatActivity() {
         State.GroupVisibility=false
         State.numberA=""
         State.numberB=""
-        State.button1=""
-        State.button2=""
-        State.button3=""
-        State.button4=""
+//        State.button1=""
+//        State.button2=""
+//        State.button3=""
+//        State.button4=""
+        State.buttonList= mutableListOf("","","","")
         State.isAnswer=false
         State.randomIndex=0
         val intent= Intent(this,MainActivity::class.java)

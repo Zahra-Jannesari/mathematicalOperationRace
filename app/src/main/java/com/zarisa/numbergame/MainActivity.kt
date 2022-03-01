@@ -28,10 +28,12 @@ class MainActivity : AppCompatActivity() {
             binding.groupAnswers.visibility=View.VISIBLE
         else
             binding.groupAnswers.visibility=View.GONE
-        binding.button1.text=State.button1
-        binding.button2.text=State.button2
-        binding.button3.text=State.button3
-        binding.button4.text=State.button4
+//        binding.button1.text=State.button1
+//        binding.button2.text=State.button2
+//        binding.button3.text=State.button3
+//        binding.button4.text=State.button4
+
+        listButtons.forEach { it.text=State.buttonList[listButtons.indexOf(it)] }
         binding.textViewNumberA.text=State.numberA
         binding.textViewNumberB.text=State.numberB
         if (State.isAnswer)
@@ -64,19 +66,23 @@ class MainActivity : AppCompatActivity() {
         var div = divide(randomA, randomB)
         listButtons[State.randomIndex].text = div.toString()
         var listTextCheck = mutableListOf<String>()
-        listTextCheck.add(div.toString())
         listButtons.forEach {
-            if (it.text == "") {
-                while (it.text=="") {
-                    var randAnswer =(Random().nextInt(9)+1).toString()
-                    if (!listTextCheck.contains(randAnswer)) {
-                        listTextCheck.add(randAnswer)
-                        it.text = (randAnswer)
+            if(listButtons.indexOf(it)==State.randomIndex)
+                listTextCheck.add(div.toString())
+            else{
+                if (it.text == "") {
+                    while (it.text == "") {
+                        var randAnswer = (Random().nextInt(9) + 1).toString()
+                        if (!listTextCheck.contains(randAnswer)) {
+                            listTextCheck.add(randAnswer)
+                            it.text = (randAnswer)
+                        }
                     }
                 }
             }
             binding.groupAnswers.visibility = View.VISIBLE
             State.GroupVisibility=true
+            State.buttonList=listTextCheck
         }
     }
 
