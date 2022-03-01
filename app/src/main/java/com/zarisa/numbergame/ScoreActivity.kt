@@ -23,6 +23,16 @@ class ScoreActivity : AppCompatActivity() {
         binding.textViewShowUserScore.text= "Your score is $score"
     }
     fun playAgain(){
+        State.level=0
+        State.score=0
+        State.GroupVisibility=false
+        State.numberA=""
+        State.numberB=""
+        State.button1=""
+        State.button2=""
+        State.button3=""
+        State.button4=""
+        State.isAnswer=false
         val intent= Intent(this,MainActivity::class.java)
         startActivity(intent)
     }

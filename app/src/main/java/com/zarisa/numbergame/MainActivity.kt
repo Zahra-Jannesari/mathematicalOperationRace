@@ -12,21 +12,13 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     var listButtons = mutableListOf<Button>()
-    var score = 0
-    var level = 0
     var randomIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
-        level=0
-        if (savedInstanceState!=null){
-            with(savedInstanceState){
-                score=getInt(STATE_SCORE)
-                score=getInt(STATE_LEVEL)
-            }
-        }
+
     }
     private fun initView() {
         listButtons.add(binding.button1)
@@ -39,16 +31,16 @@ class MainActivity : AppCompatActivity() {
                 checkAnswer(listButtons.indexOf(it))
             }
         }
-        binding.textViewScore.text = score.toString()
+        binding.textViewScore.text = State.score.toString()
     }
 
     private fun dice() {
-        if (level==4){
+        if (State.level==4){
             val intent=Intent(this,ScoreActivity::class.java)
-            intent.putExtra("score",score)
+            intent.putExtra("score",State.score)
             startActivity(intent)
         }
-        level++
+        State.level++
         listButtons.forEach { it.isClickable=true}
         clearColor()
         listButtons.forEach { it.text = "" }
@@ -77,13 +69,13 @@ class MainActivity : AppCompatActivity() {
 
     fun checkAnswer(butIndex: Int) {
         if (butIndex == randomIndex) {
-            score += 5
+            State.score += 5
             listButtons[butIndex].setBackgroundColor(Color.GREEN)
         } else {
-            score -= 2
+            State.score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
         }
-        binding.textViewScore.text=score.toString()
+        binding.textViewScore.text=State.score.toString()
         listButtons.forEach { it.isClickable=false }
     }
     fun divide(randomA: Int, randomB: Int): Int {
@@ -95,18 +87,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        outState?.run {
-            putInt(STATE_SCORE,score)
-            putInt(STATE_LEVEL,level)
-        }
-        super.onSaveInstanceState(outState)
-    }
-    companion object{
-        val STATE_SCORE="PlayerScore"
-        val STATE_LEVEL="PlayerLevel"
-        val STATE_ANSWER_BUTTON="Answers"
-        val RANDOM_A="A"
-        val RANDOM_B="B"
-    }
 }
