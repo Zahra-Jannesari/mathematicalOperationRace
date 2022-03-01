@@ -1,5 +1,6 @@
 package com.zarisa.numbergame
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,15 +25,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding.buttonDice.setOnClickListener { dice() }
-        listButtons.add(binding.button1)
-        listButtons.add(binding.button2)
-        listButtons.add(binding.button3)
-        listButtons.add(binding.button4)
-        listButtons.forEach {
-            it.setOnClickListener {checkAnswer(listButtons.indexOf(it))}
+        if (level==4){
+           var intent=Intent(this,ScoreActivity::class.java)
+            intent.putExtra("score",score)
+            startActivity(intent)
+        }else {
+            binding.buttonDice.setOnClickListener { dice() }
+            listButtons.add(binding.button1)
+            listButtons.add(binding.button2)
+            listButtons.add(binding.button3)
+            listButtons.add(binding.button4)
+            listButtons.forEach {
+                it.setOnClickListener {
+                    checkAnswer(listButtons.indexOf(it))
+                }
+            }
         }
-        binding.textViewScore.text=score.toString()
+            binding.textViewScore.text = score.toString()
+
     }
 
     private fun dice() {
@@ -80,4 +90,5 @@ class MainActivity : AppCompatActivity() {
             it.setBackgroundColor(Color.BLUE)
         }
     }
+
 }
