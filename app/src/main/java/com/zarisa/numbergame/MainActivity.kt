@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
         listButtons.add(binding.button4)
-        binding.textViewScore.text = State.score.toString()
+        binding.textViewScore.text ="Score:"+ State.score.toString()
         if(State.GroupVisibility)
             binding.groupAnswers.visibility=View.VISIBLE
         else
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             State.score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
         }
-        binding.textViewScore.text=State.score.toString()
+        binding.textViewScore.text="Score:"+State.score.toString()
         listButtons.forEach { it.isClickable=false }
     }
     private fun divide(randomA: Int, randomB: Int): Int {
