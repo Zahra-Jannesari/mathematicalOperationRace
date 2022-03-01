@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         listButtons.forEach {
             it.setOnClickListener {checkAnswer(listButtons.indexOf(it))}
         }
+        binding.textViewScore.text=score.toString()
     }
 
     private fun dice() {
@@ -69,6 +70,7 @@ class MainActivity : AppCompatActivity() {
             score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
         }
+        binding.textViewScore.text=score.toString()
     }
     fun divide(randomA: Int, randomB: Int): Int {
         return randomA % randomB
