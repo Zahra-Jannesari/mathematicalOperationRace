@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import com.zarisa.numbergame.databinding.ActivityMainBinding
 import java.util.*
 
@@ -23,21 +22,18 @@ class MainActivity : AppCompatActivity() {
         initView()
         level=0
     }
-
     private fun initView() {
-
-        binding.buttonDice.setOnClickListener { dice() }
         listButtons.add(binding.button1)
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
         listButtons.add(binding.button4)
+        binding.buttonDice.setOnClickListener {dice()}
         listButtons.forEach {
             it.setOnClickListener {
                 checkAnswer(listButtons.indexOf(it))
             }
         }
         binding.textViewScore.text = score.toString()
-
     }
 
     private fun dice() {

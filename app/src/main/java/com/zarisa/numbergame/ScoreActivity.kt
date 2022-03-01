@@ -1,10 +1,12 @@
 package com.zarisa.numbergame
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.zarisa.numbergame.databinding.ActivityMainBinding
 import com.zarisa.numbergame.databinding.ActivityScoreBinding
+import kotlin.system.exitProcess
 
 class ScoreActivity : AppCompatActivity() {
     lateinit var binding: ActivityScoreBinding
@@ -14,7 +16,9 @@ class ScoreActivity : AppCompatActivity() {
         setContentView(binding.root)
         getScore()
         binding.buttonPlayAgain.setOnClickListener { playAgain() }
-        binding.exit.setOnClickListener { finish() }
+        binding.exit.setOnClickListener {
+
+        }
     }
     fun getScore(){
         var score=intent.getIntExtra("score",0)
