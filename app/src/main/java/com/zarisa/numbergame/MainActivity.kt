@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity() {
         if (State.choiceButtonTrue==true){
             listButtons[State.randomIndex].setBackgroundColor(Color.GREEN)
         }
-        if (State.choiceButtonFalse==true)
-            listButtons[State.randomIndex].setBackgroundColor(Color.RED)
-
+        if (State.choiceButtonFalse==true) {
+                listButtons[State.buttonIsWrong].setBackgroundColor(Color.RED)
+        }
     }
 
     private fun dice() {
@@ -87,6 +87,7 @@ class MainActivity : AppCompatActivity() {
         }
         State.choiceButtonTrue=false
         State.choiceButtonFalse=false
+        State.buttonIsWrong=0
 
     }
 
@@ -99,6 +100,7 @@ class MainActivity : AppCompatActivity() {
             State.score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
             State.choiceButtonFalse=true
+            State.buttonIsWrong=butIndex
         }
         binding.textViewScore.text="Score:"+State.score.toString()
         listButtons.forEach { it.isClickable=false }

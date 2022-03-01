@@ -33,6 +33,7 @@ class ScoreActivity : AppCompatActivity() {
         State.buttonList= mutableListOf("","","","")
         State.isAnswer=false
         State.randomIndex=0
+        State.buttonIsWrong=0
         val intent= Intent(this,MainActivity::class.java)
         startActivity(intent)
     }

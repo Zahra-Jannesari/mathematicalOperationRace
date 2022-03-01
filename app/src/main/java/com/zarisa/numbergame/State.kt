@@ -11,4 +11,5 @@ object State{
     var buttonList=mutableListOf("","","","")
     var choiceButtonTrue=false
     var choiceButtonFalse=false
+    var buttonIsWrong=0
 }
