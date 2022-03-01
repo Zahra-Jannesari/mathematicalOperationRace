@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
         listButtons.add(binding.button4)
-        binding.textViewScore.text ="Score:"+ State.score.toString()
+        binding.textViewScore.text ="Score:" +State.score.toString()
         if(State.GroupVisibility)
             binding.groupAnswers.visibility=View.VISIBLE
         else
@@ -48,47 +48,48 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dice() {
-        if (State.level==5){
-            val intent=Intent(this,ScoreActivity::class.java)
-            intent.putExtra("score",State.score)
+        if (State.level == 5) {
+            val intent = Intent(this, ScoreActivity::class.java)
+            intent.putExtra("score", State.score)
             startActivity(intent)
         }
-        else{
-        State.level++
-        listButtons.forEach { it.isClickable=true}
-        clearColor()
-        listButtons.forEach { it.text = "" }
-        var randomA = Random().nextInt(99) + 1
-        State.numberA=randomA.toString()
-        binding.textViewNumberA.text =State.numberA
-        var randomB = Random().nextInt(9) + 1
-        State.numberB=randomB.toString()
-        binding.textViewNumberB.text = State.numberB
-        State.randomIndex=Random().nextInt(listButtons.size - 1)
-        var div = divide(randomA, randomB)
-        listButtons[State.randomIndex].text = div.toString()
-        var listTextCheck = mutableListOf<String>()
-        listButtons.forEach {
-            if(listButtons.indexOf(it)==State.randomIndex)
-                listTextCheck.add(div.toString())
-            else{
-                if (it.text == "") {
-                    while (it.text == "") {
-                        var randAnswer = (Random().nextInt(9) + 1).toString()
-                        if (!listTextCheck.contains(randAnswer)) {
-                            listTextCheck.add(randAnswer)
-                            it.text = (randAnswer)
+        else {
+            State.level++
+            listButtons.forEach { it.isClickable = true }
+            clearColor()
+            listButtons.forEach { it.text = "" }
+            var randomA = Random().nextInt(99) + 1
+            State.numberA = randomA.toString()
+            binding.textViewNumberA.text = State.numberA
+            var randomB = Random().nextInt(9) + 1
+            State.numberB = randomB.toString()
+            binding.textViewNumberB.text = State.numberB
+            State.randomIndex = Random().nextInt(listButtons.size - 1)
+            var div = divide(randomA, randomB)
+            listButtons[State.randomIndex].text = div.toString()
+            var listTextCheck = mutableListOf<String>()
+            listButtons.forEach {
+                if (listButtons.indexOf(it) == State.randomIndex)
+                    listTextCheck.add(div.toString())
+                else {
+                    if (it.text == "") {
+                        while (it.text == "") {
+                            var randAnswer = (Random().nextInt(9) + 1).toString()
+                            if (!listTextCheck.contains(randAnswer)) {
+                                listTextCheck.add(randAnswer)
+                                it.text = (randAnswer)
+                            }
                         }
                     }
                 }
+                binding.groupAnswers.visibility = View.VISIBLE
+                State.GroupVisibility = true
+                State.buttonList = listTextCheck
             }
-            binding.groupAnswers.visibility = View.VISIBLE
-            State.GroupVisibility=true
-            State.buttonList=listTextCheck
-        }
-        State.choiceButtonTrue=false
-        State.choiceButtonFalse=false
-        State.buttonIsWrong=0
+            State.choiceButtonTrue = false
+            State.choiceButtonFalse = false
+            State.buttonIsWrong = 0
+            State.isAnswer = false
         }
     }
 
@@ -103,8 +104,9 @@ class MainActivity : AppCompatActivity() {
             State.choiceButtonFalse=true
             State.buttonIsWrong=butIndex
         }
-        binding.textViewScore.text="Score:"+State.score.toString()
+        binding.textViewScore.text="Score:" +State.score.toString()
         listButtons.forEach { it.isClickable=false }
+        State.isAnswer=true
     }
     private fun divide(randomA: Int, randomB: Int): Int {
         return randomA % randomB
