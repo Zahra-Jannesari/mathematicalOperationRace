@@ -48,11 +48,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dice() {
-        if (State.level==4){
+        if (State.level==5){
             val intent=Intent(this,ScoreActivity::class.java)
             intent.putExtra("score",State.score)
             startActivity(intent)
         }
+        else{
         State.level++
         listButtons.forEach { it.isClickable=true}
         clearColor()
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         State.choiceButtonTrue=false
         State.choiceButtonFalse=false
         State.buttonIsWrong=0
-
+        }
     }
 
     fun checkAnswer(butIndex: Int) {
