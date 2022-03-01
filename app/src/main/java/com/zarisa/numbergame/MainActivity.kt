@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding.textViewNumberA.text=State.numberA
         binding.textViewNumberB.text=State.numberB
         if (State.isAnswer)
-            listButtons.forEach { it.isClickable=false}
+            listButtons.forEach { it.isEnabled=false}
         binding.buttonDice.setOnClickListener {dice()}
         listButtons.forEach {
             it.setOnClickListener {
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         }
         else {
             State.level++
-            listButtons.forEach { it.isClickable = true }
+            listButtons.forEach { it.isEnabled = true }
             clearColor()
             listButtons.forEach { it.text = "" }
             var randomA = Random().nextInt(99) + 1
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             State.buttonIsWrong=butIndex
         }
         binding.textViewScore.text="Score:" +State.score.toString()
-        listButtons.forEach { it.isClickable=false }
+        listButtons.forEach { it.isEnabled=false }
         State.isAnswer=true
     }
     private fun divide(randomA: Int, randomB: Int): Int {
