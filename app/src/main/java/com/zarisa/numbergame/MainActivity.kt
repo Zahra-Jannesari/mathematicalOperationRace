@@ -28,11 +28,6 @@ class MainActivity : AppCompatActivity() {
             binding.groupAnswers.visibility=View.VISIBLE
         else
             binding.groupAnswers.visibility=View.GONE
-//        binding.button1.text=State.button1
-//        binding.button2.text=State.button2
-//        binding.button3.text=State.button3
-//        binding.button4.text=State.button4
-
         listButtons.forEach { it.text=State.buttonList[listButtons.indexOf(it)] }
         binding.textViewNumberA.text=State.numberA
         binding.textViewNumberB.text=State.numberB
@@ -44,6 +39,12 @@ class MainActivity : AppCompatActivity() {
                 checkAnswer(listButtons.indexOf(it))
             }
         }
+        if (State.choiceButtonTrue==true){
+            listButtons[State.randomIndex].setBackgroundColor(Color.GREEN)
+        }
+        if (State.choiceButtonFalse==true)
+            listButtons[State.randomIndex].setBackgroundColor(Color.RED)
+
     }
 
     private fun dice() {
@@ -84,15 +85,20 @@ class MainActivity : AppCompatActivity() {
             State.GroupVisibility=true
             State.buttonList=listTextCheck
         }
+        State.choiceButtonTrue=false
+        State.choiceButtonFalse=false
+
     }
 
     fun checkAnswer(butIndex: Int) {
         if (butIndex == State.randomIndex) {
             State.score += 5
             listButtons[butIndex].setBackgroundColor(Color.GREEN)
+            State.choiceButtonTrue=true
         } else {
             State.score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
+            State.choiceButtonFalse=true
         }
         binding.textViewScore.text="Score:"+State.score.toString()
         listButtons.forEach { it.isClickable=false }

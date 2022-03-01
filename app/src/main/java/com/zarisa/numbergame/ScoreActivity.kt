@@ -28,10 +28,8 @@ class ScoreActivity : AppCompatActivity() {
         State.GroupVisibility=false
         State.numberA=""
         State.numberB=""
-//        State.button1=""
-//        State.button2=""
-//        State.button3=""
-//        State.button4=""
+        State.choiceButtonTrue=false
+        State.choiceButtonFalse=false
         State.buttonList= mutableListOf("","","","")
         State.isAnswer=false
         State.randomIndex=0
