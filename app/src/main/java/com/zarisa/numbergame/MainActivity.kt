@@ -21,31 +21,31 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
-
+        level=0
     }
 
     private fun initView() {
-        if (level==4){
-           var intent=Intent(this,ScoreActivity::class.java)
-            intent.putExtra("score",score)
-            startActivity(intent)
-        }
-            binding.buttonDice.setOnClickListener { dice() }
-            listButtons.add(binding.button1)
-            listButtons.add(binding.button2)
-            listButtons.add(binding.button3)
-            listButtons.add(binding.button4)
-            listButtons.forEach {
-                it.setOnClickListener {
-                    checkAnswer(listButtons.indexOf(it))
-                }
-            }
 
-            binding.textViewScore.text = score.toString()
+        binding.buttonDice.setOnClickListener { dice() }
+        listButtons.add(binding.button1)
+        listButtons.add(binding.button2)
+        listButtons.add(binding.button3)
+        listButtons.add(binding.button4)
+        listButtons.forEach {
+            it.setOnClickListener {
+                checkAnswer(listButtons.indexOf(it))
+            }
+        }
+        binding.textViewScore.text = score.toString()
 
     }
 
     private fun dice() {
+        if (level==4){
+            val intent=Intent(this,ScoreActivity::class.java)
+            intent.putExtra("score",score)
+            startActivity(intent)
+        }
         level++
         clearColor()
         listButtons.forEach { it.text = "" }
@@ -81,6 +81,7 @@ class MainActivity : AppCompatActivity() {
             listButtons[butIndex].setBackgroundColor(Color.RED)
         }
         binding.textViewScore.text=score.toString()
+        listButtons.forEach { it.isClickable=false }
     }
     fun divide(randomA: Int, randomB: Int): Int {
         return randomA % randomB
