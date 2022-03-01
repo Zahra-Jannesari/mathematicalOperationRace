@@ -33,6 +33,7 @@ class ScoreActivity : AppCompatActivity() {
         State.button3=""
         State.button4=""
         State.isAnswer=false
+        State.randomIndex=0
         val intent= Intent(this,MainActivity::class.java)
         startActivity(intent)
     }

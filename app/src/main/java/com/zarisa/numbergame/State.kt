@@ -11,4 +11,5 @@ object State{
     var isAnswer=false
     var level=0
     var score=0
+    var randomIndex=0
 }

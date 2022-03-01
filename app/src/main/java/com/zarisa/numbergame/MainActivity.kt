@@ -12,26 +12,36 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     var listButtons = mutableListOf<Button>()
-    var randomIndex = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initView()
-
     }
     private fun initView() {
         listButtons.add(binding.button1)
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
         listButtons.add(binding.button4)
+        binding.textViewScore.text = State.score.toString()
+        if(State.GroupVisibility)
+            binding.groupAnswers.visibility=View.VISIBLE
+        else
+            binding.groupAnswers.visibility=View.GONE
+        binding.button1.text=State.button1
+        binding.button2.text=State.button2
+        binding.button3.text=State.button3
+        binding.button4.text=State.button4
+        binding.textViewNumberA.text=State.numberA
+        binding.textViewNumberB.text=State.numberB
+        if (State.isAnswer)
+            listButtons.forEach { it.isClickable=false}
         binding.buttonDice.setOnClickListener {dice()}
         listButtons.forEach {
             it.setOnClickListener {
                 checkAnswer(listButtons.indexOf(it))
             }
         }
-        binding.textViewScore.text = State.score.toString()
     }
 
     private fun dice() {
@@ -45,12 +55,14 @@ class MainActivity : AppCompatActivity() {
         clearColor()
         listButtons.forEach { it.text = "" }
         var randomA = Random().nextInt(99) + 1
-        binding.textViewNumberA.text = randomA.toString()
+        State.numberA=randomA.toString()
+        binding.textViewNumberA.text =State.numberA
         var randomB = Random().nextInt(9) + 1
-        binding.textViewNumberB.text = randomB.toString()
-        randomIndex = Random().nextInt(listButtons.size - 1)
+        State.numberB=randomB.toString()
+        binding.textViewNumberB.text = State.numberB
+        State.randomIndex=Random().nextInt(listButtons.size - 1)
         var div = divide(randomA, randomB)
-        listButtons[randomIndex].text = div.toString()
+        listButtons[State.randomIndex].text = div.toString()
         var listTextCheck = mutableListOf<String>()
         listTextCheck.add(div.toString())
         listButtons.forEach {
@@ -64,11 +76,12 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             binding.groupAnswers.visibility = View.VISIBLE
+            State.GroupVisibility=true
         }
     }
 
     fun checkAnswer(butIndex: Int) {
-        if (butIndex == randomIndex) {
+        if (butIndex == State.randomIndex) {
             State.score += 5
             listButtons[butIndex].setBackgroundColor(Color.GREEN)
         } else {
@@ -78,10 +91,10 @@ class MainActivity : AppCompatActivity() {
         binding.textViewScore.text=State.score.toString()
         listButtons.forEach { it.isClickable=false }
     }
-    fun divide(randomA: Int, randomB: Int): Int {
+    private fun divide(randomA: Int, randomB: Int): Int {
         return randomA % randomB
     }
-    fun clearColor() {
+    private fun clearColor() {
         listButtons.forEach {
             it.setBackgroundColor(Color.BLUE)
         }
