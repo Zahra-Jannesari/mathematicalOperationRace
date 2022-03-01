@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initView()
         level=0
+        if (savedInstanceState!=null){
+            with(savedInstanceState){
+                score=getInt(STATE_SCORE)
+                score=getInt(STATE_LEVEL)
+            }
+        }
     }
     private fun initView() {
         listButtons.add(binding.button1)
@@ -83,10 +89,24 @@ class MainActivity : AppCompatActivity() {
     fun divide(randomA: Int, randomB: Int): Int {
         return randomA % randomB
     }
-    fun clearColor(){
+    fun clearColor() {
         listButtons.forEach {
             it.setBackgroundColor(Color.BLUE)
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState?.run {
+            putInt(STATE_SCORE,score)
+            putInt(STATE_LEVEL,level)
+        }
+        super.onSaveInstanceState(outState)
+    }
+    companion object{
+        val STATE_SCORE="PlayerScore"
+        val STATE_LEVEL="PlayerLevel"
+        val STATE_ANSWER_BUTTON="Answers"
+        val RANDOM_A="A"
+        val RANDOM_B="B"
+    }
 }
