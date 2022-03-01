@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
            var intent=Intent(this,ScoreActivity::class.java)
             intent.putExtra("score",score)
             startActivity(intent)
-        }else {
+        }
             binding.buttonDice.setOnClickListener { dice() }
             listButtons.add(binding.button1)
             listButtons.add(binding.button2)
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     checkAnswer(listButtons.indexOf(it))
                 }
             }
-        }
+
             binding.textViewScore.text = score.toString()
 
     }
