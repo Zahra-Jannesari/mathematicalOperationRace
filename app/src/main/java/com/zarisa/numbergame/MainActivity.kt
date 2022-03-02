@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun dice() {
-        if (State.level == 5) {
+        if (State.level >= 5) {
             val intent = Intent(this, ScoreActivity::class.java)
             intent.putExtra("score", State.score)
             startActivity(intent)
@@ -75,10 +75,10 @@ class MainActivity : AppCompatActivity() {
                 else {
                     if (it.text == "") {
                         while (it.text == "") {
-                            var randAnswer = (Random().nextInt(9) + 1).toString()
-                            if (!listTextCheck.contains(randAnswer)) {
-                                listTextCheck.add(randAnswer)
-                                it.text = (randAnswer)
+                            var randAnswer = (Random().nextInt(9) + 1)
+                            if (!listTextCheck.contains(randAnswer.toString())&&randAnswer!=State.randomIndex) {
+                                listTextCheck.add(randAnswer.toString())
+                                it.text = (randAnswer.toString())
                             }
                         }
                     }
