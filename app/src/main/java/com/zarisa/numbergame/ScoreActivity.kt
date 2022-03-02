@@ -1,8 +1,8 @@
 package com.zarisa.numbergame
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.os.Process
 import androidx.appcompat.app.AppCompatActivity
 import com.zarisa.numbergame.databinding.ActivityScoreBinding
 
@@ -12,15 +12,19 @@ class ScoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityScoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getScore()
+        getScoreAndRecord()
         binding.buttonPlayAgain.setOnClickListener { playAgain() }
         binding.exit.setOnClickListener {
             this.finishAffinity()
         }
     }
-    fun getScore(){
+    @SuppressLint("SetTextI18n")
+    fun getScoreAndRecord(){
         var score=intent.getIntExtra("score",0)
         binding.textViewShowUserScore.text= "Your score is $score"
+        if (score>State.record)
+            State.record=score
+        binding.textViewRecord.text="Your record is ${State.record}"
     }
     fun playAgain(){
         State.level=0

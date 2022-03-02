@@ -12,4 +12,5 @@ object State{
     var choiceButtonTrue=false
     var choiceButtonFalse=false
     var buttonIsWrong=0
+    var record=0
 }

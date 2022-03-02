@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
         listButtons.add(binding.button4)
-        binding.textViewScore.text ="Score:" +State.score.toString()
+        binding.textViewScore.text ="Score: ${State.score}"
+        binding.textViewRecord.text="Record: ${State.record}"
         if(State.GroupVisibility)
             binding.groupAnswers.visibility=View.VISIBLE
         else
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             State.choiceButtonFalse=true
             State.buttonIsWrong=butIndex
         }
-        binding.textViewScore.text="Score:" +State.score.toString()
+        binding.textViewScore.text="Score: ${State.score}"
         listButtons.forEach { it.isClickable=false }
 
     }

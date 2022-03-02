@@ -131,5 +131,15 @@
         app:layout_constraintStart_toEndOf="@+id/textView_numberA"
         app:layout_constraintTop_toTopOf="@+id/textView_numberA" />
 
+    <TextView
+        android:id="@+id/textView_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/textView_score"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_score"
+        app:layout_constraintTop_toBottomOf="@+id/textView_score" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
