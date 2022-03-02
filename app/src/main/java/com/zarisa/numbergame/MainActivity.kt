@@ -31,8 +31,7 @@ class MainActivity : AppCompatActivity() {
         listButtons.forEach { it.text=State.buttonList[listButtons.indexOf(it)] }
         binding.textViewNumberA.text=State.numberA
         binding.textViewNumberB.text=State.numberB
-        if (State.isAnswer)
-            listButtons.forEach { it.isEnabled=false}
+
         binding.buttonDice.setOnClickListener {dice()}
         listButtons.forEach {
             it.setOnClickListener {
@@ -41,9 +40,11 @@ class MainActivity : AppCompatActivity() {
         }
         if (State.choiceButtonTrue==true){
             listButtons[State.randomIndex].setBackgroundColor(Color.GREEN)
+            listButtons.forEach { it.isClickable=false}
         }
         if (State.choiceButtonFalse==true) {
                 listButtons[State.buttonIsWrong].setBackgroundColor(Color.RED)
+            listButtons.forEach { it.isClickable=false}
         }
     }
 
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         }
         else {
             State.level++
-            listButtons.forEach { it.isEnabled = true }
+            listButtons.forEach { it.isClickable = true }
             clearColor()
             listButtons.forEach { it.text = "" }
             var randomA = Random().nextInt(99) + 1
@@ -89,7 +90,6 @@ class MainActivity : AppCompatActivity() {
             State.choiceButtonTrue = false
             State.choiceButtonFalse = false
             State.buttonIsWrong = 0
-            State.isAnswer = false
         }
     }
 
@@ -105,8 +105,8 @@ class MainActivity : AppCompatActivity() {
             State.buttonIsWrong=butIndex
         }
         binding.textViewScore.text="Score:" +State.score.toString()
-        listButtons.forEach { it.isEnabled=false }
-        State.isAnswer=true
+        listButtons.forEach { it.isClickable=false }
+
     }
     private fun divide(randomA: Int, randomB: Int): Int {
         return randomA % randomB
