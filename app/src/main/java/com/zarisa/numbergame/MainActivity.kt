@@ -1,17 +1,21 @@
 package com.zarisa.numbergame
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import com.zarisa.numbergame.databinding.ActivityMainBinding
 import java.util.*
-
+@SuppressLint("SetTextI18n")
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    var listButtons = mutableListOf<Button>()
+    private var listButtons = mutableListOf<Button>()
+    lateinit var countDownTimer: CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -19,10 +23,29 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
     private fun initView() {
+        binding.textViewTimer.text = State.timer
         listButtons.add(binding.button1)
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
         listButtons.add(binding.button4)
+        binding.buttonDice.setOnClickListener {dice()}
+        listButtons.forEach {
+            it.setOnClickListener {
+                checkAnswer(listButtons.indexOf(it))
+            }
+        }
+        configChangeHandling()
+    }
+
+    private fun configChangeHandling() {
+        if (State.choiceButtonTrue) {
+            listButtons[State.randomIndex].setBackgroundColor(Color.GREEN)
+            listButtons.forEach { it.isClickable = false }
+        }
+        if (State.choiceButtonFalse) {
+            listButtons[State.buttonIsWrong].setBackgroundColor(Color.RED)
+            listButtons.forEach { it.isClickable = false }
+        }
         binding.textViewScore.text ="Score: ${State.score}"
         binding.textViewRecord.text="Record: ${State.record}"
         if(State.GroupVisibility)
@@ -32,21 +55,6 @@ class MainActivity : AppCompatActivity() {
         listButtons.forEach { it.text=State.buttonList[listButtons.indexOf(it)] }
         binding.textViewNumberA.text=State.numberA
         binding.textViewNumberB.text=State.numberB
-
-        binding.buttonDice.setOnClickListener {dice()}
-        listButtons.forEach {
-            it.setOnClickListener {
-                checkAnswer(listButtons.indexOf(it))
-            }
-        }
-        if (State.choiceButtonTrue==true){
-            listButtons[State.randomIndex].setBackgroundColor(Color.GREEN)
-            listButtons.forEach { it.isClickable=false}
-        }
-        if (State.choiceButtonFalse==true) {
-                listButtons[State.buttonIsWrong].setBackgroundColor(Color.RED)
-            listButtons.forEach { it.isClickable=false}
-        }
     }
 
     private fun dice() {
@@ -56,6 +64,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         else {
+//            countDownTimer.cancel()
+            timerFun()
             State.level++
             listButtons.forEach { it.isClickable = true }
             clearColor()
@@ -94,6 +104,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun timerFun() {
+        countDownTimer=object : CountDownTimer(10000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                State.timer="time: " + millisUntilFinished / 1000
+                binding.textViewTimer.text = State.timer
+            }
+            override fun onFinish() {
+                Toast.makeText(this@MainActivity,"Time done!",Toast.LENGTH_SHORT).show()
+                dice()
+            }
+        }.start()
+    }
+
     fun checkAnswer(butIndex: Int) {
         if (butIndex == State.randomIndex) {
             State.score += 5
@@ -117,5 +141,4 @@ class MainActivity : AppCompatActivity() {
             it.setBackgroundColor(Color.BLUE)
         }
     }
-
 }

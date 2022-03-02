@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NumberGame</string>
+    <string name="diceText">dice</string>
 </resources>

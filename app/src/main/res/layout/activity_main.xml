@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintEnd_toStartOf="@+id/textView_numberB"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
         android:id="@+id/textView_numberB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/textView_numberA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -33,7 +33,7 @@
         android:layout_width="79dp"
         android:layout_height="36dp"
         android:layout_marginTop="16dp"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="dice"
+        android:text="@string/diceText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_numberA" />
@@ -135,11 +135,23 @@
         android:id="@+id/textView_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        tools:text="TextView"
         app:layout_constraintEnd_toEndOf="@+id/textView_score"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView_score"
         app:layout_constraintTop_toBottomOf="@+id/textView_score" />
+
+    <TextView
+        android:id="@+id/textView_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        tools:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_numberB"
+        app:layout_constraintTop_toTopOf="@+id/textView_score"
+        app:layout_constraintVertical_bias="0.472" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
