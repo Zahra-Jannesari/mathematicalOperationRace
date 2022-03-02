@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                     if (it.text == "") {
                         while (it.text == "") {
                             var randAnswer = (Random().nextInt(9) + 1)
-                            if (!listTextCheck.contains(randAnswer.toString())&&randAnswer!=State.randomIndex) {
+                            if (!listTextCheck.contains(randAnswer.toString())&&randAnswer!=div) {
                                 listTextCheck.add(randAnswer.toString())
                                 it.text = (randAnswer.toString())
                             }
