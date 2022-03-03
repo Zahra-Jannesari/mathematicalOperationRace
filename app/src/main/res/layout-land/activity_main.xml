@@ -39,19 +39,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <ImageView
         android:id="@+id/button_dice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         android:layout_marginTop="24dp"
-        android:text="dice"
-        app:icon="@drawable/dic"
-        app:iconSize="60dp"
-        app:iconGravity="textStart"
-        app:iconTintMode="multiply"
+        android:background="@android:color/transparent"
+        app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_numberA" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_numberA"
+        app:srcCompat="@drawable/dices" />
 
     <LinearLayout
         android:id="@+id/linearLayout1"
