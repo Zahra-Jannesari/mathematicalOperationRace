@@ -26,6 +26,7 @@ class ScoreActivity : AppCompatActivity() {
             State.isAnswer=false
             State.randomIndex=0
             State.buttonIsWrong=0
+            State.record=0
             this.finishAffinity()
         }
     }
