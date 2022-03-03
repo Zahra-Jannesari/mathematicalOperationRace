@@ -15,6 +15,17 @@ class ScoreActivity : AppCompatActivity() {
         getScoreAndRecord()
         binding.buttonPlayAgain.setOnClickListener { playAgain() }
         binding.exit.setOnClickListener {
+            State.level=0
+            State.score=0
+            State.GroupVisibility=false
+            State.numberA=""
+            State.numberB=""
+            State.choiceButtonTrue=false
+            State.choiceButtonFalse=false
+            State.buttonList= mutableListOf("","","","")
+            State.isAnswer=false
+            State.randomIndex=0
+            State.buttonIsWrong=0
             this.finishAffinity()
         }
     }
