@@ -12,11 +12,14 @@ class ScoreActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityScoreBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initView()
+    }
+    fun initView(){
         getScoreAndRecord()
         binding.buttonPlayAgain.setOnClickListener { playAgain() }
         binding.exit.setOnClickListener {
             saveState()
-           // State.record=0
+            // State.record=0
             this.finishAffinity()
         }
     }
