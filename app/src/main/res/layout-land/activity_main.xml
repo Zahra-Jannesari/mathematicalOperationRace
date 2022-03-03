@@ -110,8 +110,8 @@
         android:id="@+id/group_answers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="linearLayout1"
-        android:visibility="visible"/>
+        android:visibility="visible"
+        app:constraint_referenced_ids="linearLayout1" />
     <TextView
         android:id="@+id/textView_symbol"
         android:layout_width="52dp"
@@ -124,17 +124,7 @@
         app:layout_constraintEnd_toStartOf="@+id/textView_numberB"
         app:layout_constraintStart_toEndOf="@+id/textView_numberA"
         app:layout_constraintTop_toTopOf="@+id/textView_numberA" />
-    <TextView
-        android:id="@+id/textView_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        tools:text="TextView"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_record"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_numberB"
-        app:layout_constraintTop_toTopOf="@+id/textView_score"
-        app:layout_constraintVertical_bias="0.472" />
+
     <TextView
         android:id="@+id/textView_record"
         android:layout_width="wrap_content"

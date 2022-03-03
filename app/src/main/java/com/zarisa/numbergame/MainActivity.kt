@@ -15,7 +15,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     private var listButtons = mutableListOf<Button>()
-    lateinit var countDownTimer: CountDownTimer
+//    lateinit var countDownTimer: CountDownTimer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         initView()
     }
     private fun initView() {
-        binding.textViewTimer.text = State.timer
         listButtons.add(binding.button1)
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         }
         else {
 //            countDownTimer.cancel()
-            timerFun()
+//            timerFun()
             State.level++
             listButtons.forEach { it.isClickable = true }
             clearColor()
@@ -104,19 +103,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun timerFun() {
-        countDownTimer=object : CountDownTimer(10000, 1000) {
-
-            override fun onTick(millisUntilFinished: Long) {
-                State.timer="time: " + millisUntilFinished / 1000
-                binding.textViewTimer.text = State.timer
-            }
-            override fun onFinish() {
-                Toast.makeText(this@MainActivity,"Time done!",Toast.LENGTH_SHORT).show()
-                dice()
-            }
-        }.start()
-    }
+//    private fun timerFun() {
+//        countDownTimer=object : CountDownTimer(10000, 1000) {
+//
+//            override fun onTick(millisUntilFinished: Long) {
+//                binding.textViewTimer.setText( "time: " + millisUntilFinished / 1000)
+//            }
+//            override fun onFinish() {
+//                Toast.makeText(this@MainActivity,"Time done!",Toast.LENGTH_SHORT).show()
+//                dice()
+//            }
+//        }.start()
+//    }
 
     fun checkAnswer(butIndex: Int) {
         if (butIndex == State.randomIndex) {

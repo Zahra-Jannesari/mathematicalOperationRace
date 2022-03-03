@@ -13,5 +13,4 @@ object State{
     var choiceButtonFalse=false
     var buttonIsWrong=0
     var record=0
-    var timer=""
 }
