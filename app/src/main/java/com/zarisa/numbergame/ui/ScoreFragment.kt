@@ -44,7 +44,7 @@ class ScoreFragment : Fragment() {
     fun getScoreAndRecord(){
         //TODO
         //get score from view model and put in var score
-        var score= 0
+        var score= viewModel.score
         binding.textViewShowUserScore.text= "Your score is $score"
         if (score> viewModel.record)
             viewModel.record =score
