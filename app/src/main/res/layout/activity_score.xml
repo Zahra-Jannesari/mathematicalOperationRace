@@ -8,36 +8,5 @@
     android:gravity="center"
     tools:context=".ScoreActivity">
 
-    <TextView
-        android:id="@+id/textView_ShowUserScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        tools:text="TextViewScore"
-         />
-    <TextView
-        android:id="@+id/textView_record"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="record"
-        android:gravity="center"
-        android:layout_margin="20dp"/>
-    <Button
-        android:id="@+id/button_play_again"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:text="Play Again"
-        />
-
-    <Button
-        android:id="@+id/exit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center"
-        android:text="Exit"
-        />
 
 </LinearLayout>

@@ -19,7 +19,11 @@
         android:id="@+id/scoreFragment"
         android:name="com.zarisa.numbergame.ScoreFragment"
         android:label="fragment_score"
-        tools:layout="@layout/fragment_score" />
+        tools:layout="@layout/fragment_score" >
+        <action
+            android:id="@+id/action_scoreFragment_to_startGameFragment"
+            app:destination="@id/startGameFragment" />
+    </fragment>
     <fragment
         android:id="@+id/gameFragment"
         android:name="com.zarisa.numbergame.GameFragment"

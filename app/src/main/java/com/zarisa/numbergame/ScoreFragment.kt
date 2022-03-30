@@ -1,59 +1,67 @@
 package com.zarisa.numbergame
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import com.zarisa.numbergame.databinding.FragmentScoreBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ScoreFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ScoreFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    lateinit var binding:FragmentScoreBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_score, container, false)
+    ): View {
+        binding= FragmentScoreBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ScoreFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ScoreFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        (activity as AppCompatActivity).supportActionBar?.title = "Score"
+        initView()
+    }
+    fun initView(){
+        getScoreAndRecord()
+        binding.buttonPlayAgain.setOnClickListener { playAgain() }
+        binding.exit.setOnClickListener {
+            saveState()
+            finishAffinity(requireActivity())
+        }
+    }
+    @SuppressLint("SetTextI18n")
+    fun getScoreAndRecord(){
+        //TODO
+        //get score from view model and put in var score
+        var score= 0
+        binding.textViewShowUserScore.text= "Your score is $score"
+        if (score>State.record)
+            State.record=score
+        binding.textViewRecord.text="Your record is ${State.record}"
+    }
+    private fun playAgain(){
+        saveState()
+        findNavController().navigate(R.id.action_scoreFragment_to_startGameFragment)
+    }
+    fun saveState(){
+        State.level=0
+        State.score=0
+        State.GroupVisibility=false
+        State.numberA=""
+        State.numberB=""
+        State.choiceButtonTrue=false
+        State.choiceButtonFalse=false
+        State.buttonList= mutableListOf("","","","")
+        State.isAnswer=false
+        State.randomIndex=0
+        State.buttonIsWrong=0
     }
 }
