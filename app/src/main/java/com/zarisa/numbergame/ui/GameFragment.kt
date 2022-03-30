@@ -9,16 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.zarisa.numbergame.R
 import com.zarisa.numbergame.model.State
 import com.zarisa.numbergame.databinding.FragmentGameBinding
+import com.zarisa.numbergame.model.RaceViewModel
 import java.util.*
 
 @SuppressLint("SetTextI18n")
 class GameFragment : Fragment() {
    lateinit var binding:FragmentGameBinding
-
+    val viewModel: RaceViewModel by activityViewModels()
     private var listButtons = mutableListOf<Button>()
     //    lateinit var countDownTimer: CountDownTimer
 
