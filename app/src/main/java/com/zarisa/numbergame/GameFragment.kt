@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.zarisa.numbergame.databinding.ActivityMainBinding
 import com.zarisa.numbergame.databinding.FragmentGameBinding
@@ -20,10 +21,6 @@ class GameFragment : Fragment() {
 
     private var listButtons = mutableListOf<Button>()
     //    lateinit var countDownTimer: CountDownTimer
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,7 +32,7 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        (activity as AppCompatActivity).supportActionBar?.title = "Game"
         initView()
     }
     private fun initView() {
