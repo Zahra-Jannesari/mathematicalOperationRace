@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.zarisa.numbergame.databinding.FragmentStartGameBinding
-
+//TODO
 //for now its just for start, later we add optional range and operation
 class StartGameFragment : Fragment() {
     lateinit var binding: FragmentStartGameBinding
@@ -30,13 +30,7 @@ class StartGameFragment : Fragment() {
         //Chose a good name for this fragment
         (activity as AppCompatActivity).supportActionBar?.title = "Start"
         initViews()
-        foo()
     }
-
-    private fun foo() {
-        TODO("")
-    }
-
     private fun initViews() {
         binding.buttonStart.setOnClickListener { findNavController().navigate(R.id.action_startGameFragment_to_gameFragment) }
     }
