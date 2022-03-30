@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/startGameFragment"
-        android:name="com.zarisa.numbergame.StartGameFragment"
+        android:name="com.zarisa.numbergame.ui.StartGameFragment"
         android:label="fragment_start_game"
         tools:layout="@layout/fragment_start_game" >
         <action
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/scoreFragment"
-        android:name="com.zarisa.numbergame.ScoreFragment"
+        android:name="com.zarisa.numbergame.ui.ScoreFragment"
         android:label="fragment_score"
         tools:layout="@layout/fragment_score" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.zarisa.numbergame.GameFragment"
+        android:name="com.zarisa.numbergame.ui.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" >
         <action

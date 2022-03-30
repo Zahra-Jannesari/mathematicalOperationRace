@@ -1,6 +1,8 @@
-package com.zarisa.numbergame
+package com.zarisa.numbergame.model
 
-object State{
+import androidx.lifecycle.ViewModel
+
+class RaceViewModel:ViewModel(){
     var numberA=""
     var numberB=""
     var GroupVisibility=false

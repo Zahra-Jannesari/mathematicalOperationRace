@@ -1,4 +1,4 @@
-package com.zarisa.numbergame
+package com.zarisa.numbergame.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import com.zarisa.numbergame.R
 import com.zarisa.numbergame.databinding.FragmentStartGameBinding
 //TODO
 //for now its just for start, later we add optional range and operation

@@ -1,4 +1,4 @@
-package com.zarisa.numbergame
+package com.zarisa.numbergame.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.navigation.fragment.findNavController
+import com.zarisa.numbergame.R
+import com.zarisa.numbergame.model.State
 import com.zarisa.numbergame.databinding.FragmentScoreBinding
 
 class ScoreFragment : Fragment() {
@@ -42,8 +44,8 @@ class ScoreFragment : Fragment() {
         //get score from view model and put in var score
         var score= 0
         binding.textViewShowUserScore.text= "Your score is $score"
-        if (score>State.record)
-            State.record=score
+        if (score> State.record)
+            State.record =score
         binding.textViewRecord.text="Your record is ${State.record}"
     }
     private fun playAgain(){
@@ -51,16 +53,16 @@ class ScoreFragment : Fragment() {
         findNavController().navigate(R.id.action_scoreFragment_to_startGameFragment)
     }
     fun saveState(){
-        State.level=0
-        State.score=0
-        State.GroupVisibility=false
-        State.numberA=""
-        State.numberB=""
-        State.choiceButtonTrue=false
-        State.choiceButtonFalse=false
-        State.buttonList= mutableListOf("","","","")
-        State.isAnswer=false
-        State.randomIndex=0
-        State.buttonIsWrong=0
+        State.level =0
+        State.score =0
+        State.GroupVisibility =false
+        State.numberA =""
+        State.numberB =""
+        State.choiceButtonTrue =false
+        State.choiceButtonFalse =false
+        State.buttonList = mutableListOf("","","","")
+        State.isAnswer =false
+        State.randomIndex =0
+        State.buttonIsWrong =0
     }
 }

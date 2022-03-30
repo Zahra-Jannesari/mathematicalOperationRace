@@ -1,4 +1,4 @@
-package com.zarisa.numbergame
+package com.zarisa.numbergame.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent

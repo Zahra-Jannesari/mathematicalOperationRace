@@ -1,7 +1,6 @@
-package com.zarisa.numbergame
+package com.zarisa.numbergame.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,7 +10,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
-import com.zarisa.numbergame.databinding.ActivityMainBinding
+import com.zarisa.numbergame.R
+import com.zarisa.numbergame.model.State
 import com.zarisa.numbergame.databinding.FragmentGameBinding
 import java.util.*
 
@@ -64,9 +64,9 @@ class GameFragment : Fragment() {
             binding.groupAnswers.visibility=View.VISIBLE
         else
             binding.groupAnswers.visibility=View.GONE
-        listButtons.forEach { it.text=State.buttonList[listButtons.indexOf(it)] }
-        binding.textViewNumberA.text=State.numberA
-        binding.textViewNumberB.text=State.numberB
+        listButtons.forEach { it.text= State.buttonList[listButtons.indexOf(it)] }
+        binding.textViewNumberA.text= State.numberA
+        binding.textViewNumberB.text= State.numberB
     }
 
     private fun dice() {
@@ -131,12 +131,12 @@ class GameFragment : Fragment() {
         if (butIndex == State.randomIndex) {
             State.score += 5
             listButtons[butIndex].setBackgroundColor(Color.GREEN)
-            State.choiceButtonTrue=true
+            State.choiceButtonTrue =true
         } else {
             State.score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
-            State.choiceButtonFalse=true
-            State.buttonIsWrong=butIndex
+            State.choiceButtonFalse =true
+            State.buttonIsWrong =butIndex
         }
         binding.textViewScore.text="Score: ${State.score}"
         listButtons.forEach { it.isClickable=false }
