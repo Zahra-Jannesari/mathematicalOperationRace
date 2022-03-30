@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.zarisa.numbergame.R
-import com.zarisa.numbergame.model.State
 import com.zarisa.numbergame.databinding.FragmentGameBinding
 import com.zarisa.numbergame.model.RaceViewModel
 import java.util.*
@@ -52,48 +51,48 @@ class GameFragment : Fragment() {
     }
 
     private fun configChangeHandling() {
-        if (State.choiceButtonTrue) {
-            listButtons[State.randomIndex].setBackgroundColor(Color.GREEN)
+        if (viewModel.choiceButtonTrue) {
+            listButtons[viewModel.randomIndex].setBackgroundColor(Color.GREEN)
             listButtons.forEach { it.isClickable = false }
         }
-        if (State.choiceButtonFalse) {
-            listButtons[State.buttonIsWrong].setBackgroundColor(Color.RED)
+        if (viewModel.choiceButtonFalse) {
+            listButtons[viewModel.buttonIsWrong].setBackgroundColor(Color.RED)
             listButtons.forEach { it.isClickable = false }
         }
-        binding.textViewScore.text ="Score: ${State.score}"
-        binding.textViewRecord.text="Record: ${State.record}"
-        if(State.GroupVisibility)
+        binding.textViewScore.text ="Score: ${viewModel.score}"
+        binding.textViewRecord.text="Record: ${viewModel.record}"
+        if(viewModel.GroupVisibility)
             binding.groupAnswers.visibility=View.VISIBLE
         else
             binding.groupAnswers.visibility=View.GONE
-        listButtons.forEach { it.text= State.buttonList[listButtons.indexOf(it)] }
-        binding.textViewNumberA.text= State.numberA
-        binding.textViewNumberB.text= State.numberB
+        listButtons.forEach { it.text= viewModel.buttonList[listButtons.indexOf(it)] }
+        binding.textViewNumberA.text= viewModel.numberA
+        binding.textViewNumberB.text= viewModel.numberB
     }
 
     private fun dice() {
-        if (State.level >= 5) {
+        if (viewModel.level >= 5) {
             findNavController().navigate(R.id.action_gameFragment_to_scoreFragment)
         }
         else {
 //            countDownTimer.cancel()
 //            timerFun()
-            State.level++
+            viewModel.level++
             listButtons.forEach { it.isClickable = true }
             clearColor()
             listButtons.forEach { it.text = "" }
             var randomA = Random().nextInt(99) + 1
-            State.numberA = randomA.toString()
-            binding.textViewNumberA.text = State.numberA
+            viewModel.numberA = randomA.toString()
+            binding.textViewNumberA.text = viewModel.numberA
             var randomB = Random().nextInt(9) + 1
-            State.numberB = randomB.toString()
-            binding.textViewNumberB.text = State.numberB
-            State.randomIndex = Random().nextInt(listButtons.size - 1)
+            viewModel.numberB = randomB.toString()
+            binding.textViewNumberB.text = viewModel.numberB
+            viewModel.randomIndex = Random().nextInt(listButtons.size - 1)
             var div = divide(randomA, randomB)
-            listButtons[State.randomIndex].text = div.toString()
+            listButtons[viewModel.randomIndex].text = div.toString()
             var listTextCheck = mutableListOf<String>()
             listButtons.forEach {
-                if (listButtons.indexOf(it) == State.randomIndex)
+                if (listButtons.indexOf(it) == viewModel.randomIndex)
                     listTextCheck.add(div.toString())
                 else {
                     if (it.text == "") {
@@ -107,12 +106,12 @@ class GameFragment : Fragment() {
                     }
                 }
                 binding.groupAnswers.visibility = View.VISIBLE
-                State.GroupVisibility = true
-                State.buttonList = listTextCheck
+                viewModel.GroupVisibility = true
+                viewModel.buttonList = listTextCheck
             }
-            State.choiceButtonTrue = false
-            State.choiceButtonFalse = false
-            State.buttonIsWrong = 0
+            viewModel.choiceButtonTrue = false
+            viewModel.choiceButtonFalse = false
+            viewModel.buttonIsWrong = 0
         }
     }
 
@@ -130,17 +129,17 @@ class GameFragment : Fragment() {
 //    }
 
     fun checkAnswer(butIndex: Int) {
-        if (butIndex == State.randomIndex) {
-            State.score += 5
+        if (butIndex == viewModel.randomIndex) {
+            viewModel.score += 5
             listButtons[butIndex].setBackgroundColor(Color.GREEN)
-            State.choiceButtonTrue =true
+            viewModel.choiceButtonTrue =true
         } else {
-            State.score -= 2
+            viewModel.score -= 2
             listButtons[butIndex].setBackgroundColor(Color.RED)
-            State.choiceButtonFalse =true
-            State.buttonIsWrong =butIndex
+            viewModel.choiceButtonFalse =true
+            viewModel.buttonIsWrong =butIndex
         }
-        binding.textViewScore.text="Score: ${State.score}"
+        binding.textViewScore.text="Score: ${viewModel.score}"
         listButtons.forEach { it.isClickable=false }
 
     }

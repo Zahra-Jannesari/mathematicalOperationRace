@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.finishAffinity
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.zarisa.numbergame.R
-import com.zarisa.numbergame.model.State
 import com.zarisa.numbergame.databinding.FragmentScoreBinding
+import com.zarisa.numbergame.model.RaceViewModel
 
 class ScoreFragment : Fragment() {
     lateinit var binding:FragmentScoreBinding
+    val viewModel: RaceViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -44,25 +46,25 @@ class ScoreFragment : Fragment() {
         //get score from view model and put in var score
         var score= 0
         binding.textViewShowUserScore.text= "Your score is $score"
-        if (score> State.record)
-            State.record =score
-        binding.textViewRecord.text="Your record is ${State.record}"
+        if (score> viewModel.record)
+            viewModel.record =score
+        binding.textViewRecord.text="Your record is ${viewModel.record}"
     }
     private fun playAgain(){
         saveState()
         findNavController().navigate(R.id.action_scoreFragment_to_startGameFragment)
     }
     fun saveState(){
-        State.level =0
-        State.score =0
-        State.GroupVisibility =false
-        State.numberA =""
-        State.numberB =""
-        State.choiceButtonTrue =false
-        State.choiceButtonFalse =false
-        State.buttonList = mutableListOf("","","","")
-        State.isAnswer =false
-        State.randomIndex =0
-        State.buttonIsWrong =0
+        viewModel.level =0
+        viewModel.score =0
+        viewModel.GroupVisibility =false
+        viewModel.numberA =""
+        viewModel.numberB =""
+        viewModel.choiceButtonTrue =false
+        viewModel.choiceButtonFalse =false
+        viewModel.buttonList = mutableListOf("","","","")
+        viewModel.isAnswer =false
+        viewModel.randomIndex =0
+        viewModel.buttonIsWrong =0
     }
 }
