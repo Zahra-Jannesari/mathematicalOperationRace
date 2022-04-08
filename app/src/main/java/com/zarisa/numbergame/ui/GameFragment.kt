@@ -77,18 +77,20 @@ class GameFragment : Fragment() {
         else {
 //            countDownTimer.cancel()
 //            timerFun()
-            viewModel.level++
+            viewModel.dice()
+//            viewModel.level++
             listButtons.forEach { it.isClickable = true }
             clearColor()
             listButtons.forEach { it.text = "" }
-            var randomA = Random().nextInt(99) + 1
-            viewModel.numberA = randomA.toString()
+ //           var randomA = Random().nextInt(99) + 1
+  //          viewModel.numberA = randomA.toString()
             binding.textViewNumberA.text = viewModel.numberA
-            var randomB = Random().nextInt(9) + 1
-            viewModel.numberB = randomB.toString()
+   //         var randomB = Random().nextInt(9) + 1
+   //         viewModel.numberB = randomB.toString()
             binding.textViewNumberB.text = viewModel.numberB
             viewModel.randomIndex = Random().nextInt(listButtons.size - 1)
-            var div = divide(randomA, randomB)
+       //     var div = divide(randomA, randomB)
+            var div = divide(viewModel.numberA.toInt(), viewModel.numberB.toInt())
             listButtons[viewModel.randomIndex].text = div.toString()
             var listTextCheck = mutableListOf<String>()
             listButtons.forEach {
@@ -109,9 +111,9 @@ class GameFragment : Fragment() {
                 viewModel.GroupVisibility = true
                 viewModel.buttonList = listTextCheck
             }
-            viewModel.choiceButtonTrue = false
-            viewModel.choiceButtonFalse = false
-            viewModel.buttonIsWrong = 0
+//            viewModel.choiceButtonTrue = false
+//            viewModel.choiceButtonFalse = false
+//            viewModel.buttonIsWrong = 0
         }
     }
 
