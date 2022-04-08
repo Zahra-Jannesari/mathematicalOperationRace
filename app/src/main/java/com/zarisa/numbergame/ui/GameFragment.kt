@@ -3,6 +3,8 @@ package com.zarisa.numbergame.ui
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import androidx.lifecycle.Observer
+import android.text.format.DateUtils
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,6 +39,9 @@ class GameFragment : Fragment() {
         initView()
     }
     private fun initView() {
+        viewModel.currentTime.observe(viewLifecycleOwner, Observer { newTime ->
+            binding.timerText.text = DateUtils.formatElapsedTime(newTime)
+        })
         listButtons.add(binding.button1)
         listButtons.add(binding.button2)
         listButtons.add(binding.button3)
@@ -71,6 +76,7 @@ class GameFragment : Fragment() {
     }
 
     private fun dice() {
+        viewModel.timerControl(true)
         if (viewModel.level >= 5) {
             findNavController().navigate(R.id.action_gameFragment_to_scoreFragment)
         }
@@ -127,8 +133,12 @@ class GameFragment : Fragment() {
 //            }
 //        }.start()
 //    }
+//override fun onTick(millisUntilFinished: Long) {
+//    binding.timer.setText("Timer: " + millisUntilFinished / 1000)
+//}
 
     fun checkAnswer(butIndex: Int) {
+        viewModel.timerControl(true)
         if (butIndex == viewModel.randomIndex) {
             viewModel.score += 5
             listButtons[butIndex].setBackgroundColor(Color.GREEN)

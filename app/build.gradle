@@ -70,4 +70,5 @@ dependencies {
     //for using by viewModels()
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
 
+
 }
